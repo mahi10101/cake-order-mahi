@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cake Orders</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8f0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #d2691e;
+    }
+    form {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    label {
+      margin-top: 10px;
+      display: block;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #d2691e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #a0522d;
+    }
+    .success-message {
+      color: green;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Cake Orders</h1>
+
+<form id="orderForm">
+  <label>About Order</label>
+  <textarea name="aboutOrder" required></textarea>
+
+  <label>Order Number</label>
+  <input type="text" name="orderNumber" required />
+
+  <label>Order Date</label>
+  <input type="date" name="orderDate" required />
+
+  <label>Delivery Date</label>
+  <input type="date" name="deliverDate" required />
+
+  <label>Customer Name</label>
+  <input type="text" name="customerName" required />
+
+  <label>Contact Number</label>
+  <input type="tel" name="contact" required />
+
+  <label>Location</label>
+  <input type="text" name="location" required />
+
+  <label>Message on Cake</label>
+  <textarea name="cakeMessage"></textarea>
+
+  <label>Surprise or Not</label>
+  <select name="surprise">
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+  </select>
+
+  <label>Advance (₹)</label>
+  <input type="number" name="advance" step="0.01" />
+
+  <label>Balance (₹)</label>
+  <input type="number" name="balance" step="0.01" />
+
+  <button type="submit">Submit Order</button>
+</form>
+
+<p class="success-message" id="successMsg" style="display:none;">Order submitted successfully!</p>
+
+<script>
+  const form = document.getElementById("orderForm");
+  const successMsg = document.getElementById("successMsg");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => data[key] = value);
+
+    fetch("https://script.google.com/macros/s/AKfycbwJe7-I8EOldlqJd5jsuot9eANV99D3YTDpUcagnLV3ZEpgdO8zAkZLuWufmhp1Nu0g/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then(() => {
+      successMsg.style.display = "block";
+      form.reset();
+    }).catch(err => {
+      alert("Something went wrong. Please try again.");
+    });
+  });
+</script>
+
+</body>
+</html>

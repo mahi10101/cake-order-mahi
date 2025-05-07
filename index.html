@@ -90,7 +90,7 @@
   </select>
   
   <label>Payment Goes to</label>
-  <select name="Payment To">
+  <select name="paymentTo">
     <option value="Techyfish">Techyfish</option>
     <option value="Siyasra">Siyasra</option>
   </select>
@@ -116,7 +116,7 @@
     const data = {};
     formData.forEach((value, key) => data[key] = value);
 
-    fetch("https://script.google.com/macros/s/AKfycbwJe7-I8EOldlqJd5jsuot9eANV99D3YTDpUcagnLV3ZEpgdO8zAkZLuWufmhp1Nu0g/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbyUndvdYSBdGFcQHU2y48fa2NIghniQVuiLaGhOZrWapzon7jIJLdMXfeklBOB3j4ax/exec", {
       method: "POST",
       mode: "no-cors",
       headers: {
